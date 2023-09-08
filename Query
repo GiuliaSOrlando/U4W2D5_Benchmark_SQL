@@ -1,0 +1,244 @@
+Elenco comandi usati per la crezione e popolamento del DB, seguito dalle query relative alla consegna dell'esercizio.
+
+
+CREATE DATABASE PoliziaMunicipale
+
+
+
+USE PoliziaMunicipale
+
+CREATE TABLE ANAGRAFICA (
+IDAnagrafica INT IDENTITY PRIMARY KEY,
+Cognome NVARCHAR(20),
+Nome NVARCHAR(20),
+Indirizzo NVARCHAR(50),
+Citta NVARCHAR(20),
+CAP NVARCHAR(10),
+Cod_Fisc NVARCHAR(16) UNIQUE NOT NULL
+)
+
+CREATE TABLE TIPO_VIOLAZIONE (
+IDViolazione INT IDENTITY PRIMARY KEY,
+Descrizione NVARCHAR NOT NULL
+)
+
+CREATE TABLE VERBALE (
+IDVerbale INT IDENTITY PRIMARY KEY,
+DataViolazione DATETIME NOT NULL,
+IndirizzoViolazione NVARCHAR(50),
+Nominativo_Agente NVARCHAR(50),
+DataTrascrizioneVerbale DATETIME,
+Importo MONEY NOT NULL,
+DecurtamentoPunti BIT NOT NULL
+)
+
+
+ALTER TABLE VERBALE
+ALTER COLUMN DecurtamentoPunti IN
+
+ALTER TABLE TIPO_VIOLAZIONE
+ALTER COLUMN Descrizione NVARCHAR(MAX)
+
+
+
+INSERT INTO ANAGRAFICA (Cognome, Nome, Indirizzo, Citta, CAP, Cod_Fisc)
+VALUES
+    ('Parente', 'Mirko', 'Via Roma 123', 'Roma', '00100', 'ABCDEF12A34B567C'),
+    ('Lettieri', 'Francesco', 'Piazza San Marco 45', 'Venezia', '30124', 'GHIJKL34D56E789F'),
+    ('Mohamed', 'Imad El din', 'Via Garibaldi 78', 'Milano', '20100', 'MNO12345G67H890I'),
+    ('Aluigi', 'Lorenzo', 'Via Verdi 56', 'Napoli', '80100', 'PQR67890S12T345U'),
+    ('Siani', 'Lorenzo', 'Piazza del Duomo 32', 'Firenze', '50100', 'VWX12345Y67Z890A'),
+    ('Abbiento', 'Maicol', 'Via Dante 7', 'Torino', '10100', 'BCDEFG12H34I567J'),
+    ('Mann', 'Gurinder Singh', 'Piazza Navona 12', 'Roma', '00186', 'KLMNOP34Q56R789S'),
+    ('Traverso', 'Nino James', 'Via Montenapoleone 21', 'Milano', '20121', 'TUVWXY45Z67A890B'),
+    ('Manca', 'Paolo Leucio', 'Via XX Settembre 14', 'Genova', '16121', 'CDEFGH12I34J567K'),
+    ('Congiu', 'Simone', 'Piazza di Spagna 3', 'Roma', '00187', 'LMNOPQ34R56S789T'),
+    ('Potenza', 'Simone', 'Via dei Condotti 9', 'Imperia', '00187', 'UVWXYZ45A67B890C'),
+    ('Ubertini', 'Andreas', 'Piazza Venezia 7', 'Roma', '00187', 'DELGHI12J34K567L'),
+    ('Paratore', 'Valerio Teo', 'Via Cola di Rienzo 56', 'Modena', '00192', 'MNOPLR34S56T789U'),
+    ('Agüero', 'Yanina Anahí', 'Piazza del Popolo 4', 'Pisa', '00187', 'VWRYZA45B67C890D'),
+    ('Girardi', 'Antonio', 'Via Veneto 33', 'Monza', '00187', 'EFGHIJ12K34R567M'),
+    ('Orlando', 'Giulia', 'Piazza della Repubblica 17', 'Siena', '00187', 'NRPQRS34T56U789V'),
+    ('Colombo', 'Gabriele Francesco', 'Via Appia Antica 123', 'Catanzaro', '00187', 'WXRZAB45C67D890E'),
+    ('Villacis', 'Anthony', 'Piazza Barberini 6', 'Foggia', '00187', 'FGHIJK12L34M563N'),
+    ('Altomare', 'Aldo', 'Via Nazionale 54', 'Palermo', '00185', 'OPQRST34U56V789R'),
+    ('Portacci', 'Alessio', 'Piazza Navona 10', 'Lecce', '00186', 'XYZABC45D67R890F'),
+    ('Di Pretoro', 'Alessio', 'Via del Corso 8', 'Catania', '00186', 'GHIJKL12R34N567O'),
+    ('Beani', 'Nicole', 'Piazza di Spagna 5', 'Gorizia', '00187', 'PQRSTUV24W56X78Y'),
+    ('Castorina', 'Sebastiano', 'Via Veneto 22', 'Vercelli', '00187', 'ZABCWE45F67G890H'),
+    ('Cifarelli', 'Giuseppe', 'Piazza del Campidoglio 1', 'Potenza', '00186', 'IJKLMNVP4Q56R78S'),
+    ('Galiano', 'Claudio', 'Via dei Fori Imperiali 7', 'Bolzano', '00186', 'TUVWXYZ4A67V890C'),
+    ('Ianniello', 'Raffaele', 'Piazza Venezia 5', 'Trieste', '00187', 'DIFGHI12J34K567L'),
+    ('Diana', 'Erica', 'Via Condotti 12', 'Biella', '00187', 'MNOPQR34S56T789L'),
+    ('Esposito', 'Paolo', 'Piazza della Minerva 8', 'Potenza', '00186', 'VWXYAAB45C67D80E'),
+    ('Giannasi', 'Fabio', 'Via del Corso 22', 'Matera', '00187', 'FGHIJK12L34A567N'),
+    ('Maso', 'Federico', 'Piazza di Santa Maria in Trastevere 1', 'Torino', '00153', 'APSTUV34W56X789Y');
+
+
+
+ALTER TABLE TIPO_VIOLAZIONE
+ALTER COLUMN Descrizione NVARCHAR(MAX)
+
+
+
+INSERT INTO TIPO_VIOLAZIONE (Descrizione)
+VALUES
+    ('Eccesso di velocità'),
+    ('Sosta vietata in zona pedonale'),
+    ('Mancato rispetto del semaforo rosso'),
+    ('Guida senza cintura di sicurezza'),
+    ('Utilizzo del cellulare durante la guida'),
+    ('Mancato rispetto del limite di alcol nel sangue'),
+    ('Mancato pagamento del pedaggio autostradale'),
+    ('Sosta in divieto di fermata'),
+    ('Mancato uso delle luci durante la notte'),
+    ('Mancato rispetto delle regole di precedenza');
+
+
+
+
+ALTER TABLE VERBALE
+ADD IDAnagrafica INT,
+	IDViolazione INT, 
+	CONSTRAINT FK_IDAnagrafica
+	FOREIGN KEY (IDAnagrafica)
+	REFERENCES ANAGRAFICA (IDAnagrafica),
+	CONSTRAINT FK_IDViolazione
+	FOREIGN KEY (IDViolazione)
+	REFERENCES TIPO_VIOLAZIONE (IDViolazione);
+
+ALTER TABLE VERBALE
+ALTER COLUMN DataViolazione DATE;
+
+
+ALTER TABLE VERBALE
+ALTER COLUMN DataTrascrizioneVerbale DATE;
+
+
+
+INSERT INTO VERBALE (DataViolazione, 
+IndirizzoViolazione, 
+Nominativo_Agente, 
+DataTrascrizioneVerbale, Importo, DecurtamentoPunti, IDAnagrafica, IDViolazione)
+VALUES
+    ('2022-01-15', 'Via Milano 56', 'Agente Rossi', '2022-01-15', 50, 0, 335, 4),
+    ('2021-02-16', 'Piazza Napoli 23', 'Agente Bianchi', '2021-02-16', 75, 1, 360, 2),
+    ('2022-03-17', 'Corso Roma 89', 'Agente Esposito', '2022-03-17', 65, 0, 340, 3),
+    ('2022-06-18', 'Via Verona 37', 'Agente Casasola', '2022-06-18', 60, 0, 336, 4),
+    ('2021-05-19', 'Piazza Firenze 10', 'Agente Greco', '2021-05-19', 40, 2, 336, 5),
+    ('2023-04-20', 'Via Palermo 72', 'Agente Romano', '2023-04-20', 90, 1, 345, 6),
+    ('2023-03-21', 'Piazza Bologna 15', 'Agente Conti', '2023-03-21', 70, 4, 346, 7),
+    ('2023-02-22', 'Via Genova 31', 'Agente Castorina', '2023-02-22', 55, 6, 348, 8),
+    ('2023-06-23', 'Piazza Torino 29', 'Agente Marino', '2023-06-23', 80, 9, 341, 9),
+    ('2023-05-24', 'Via Venezia 12', 'Agente Pisani', '2023-05-24', 45, 2, 337, 10),
+    ('2023-08-25', 'Piazza Roma 44', 'Agente Diana', '2023-08-25', 70, 2, 358, 11),
+    ('2022-07-26', 'Corso Napoli 67', 'Agente Deloris', '2022-07-26', 55, 3, 359, 2),
+    ('2021-06-27', 'Via Milano 56', 'Agente Vitale', '2021-06-27', 80, 0, 360, 3),
+    ('2021-05-28', 'Piazza Napoli 23', 'Agente Santoro', '2021-05-28', 50, 1, 353, 4),
+    ('2022-02-28', 'Corso Roma 89', 'Agente Moretti', '2022-02-28', 65, 0, 361, 5),
+    ('2022-03-30', 'Via Verona 37', 'Agente Rizzo', '2022-03-30', 75, 4, 339, 6),
+    ('2022-05-01', 'Piazza Firenze 10', 'Agente Barbieri', '2022-05-01', 40, 2, 340, 7),
+    ('2022-10-02', 'Via Palermo 72', 'Agente Colombo', '2022-10-02', 95, 7, 344, 8),
+    ('2020-11-03', 'Piazza Bologna 15', 'Agente Manca', '2020-11-03', 60, 5, 364, 9),
+    ('2020-11-04', 'Via Genova 31', 'Agente Orlando', '2020-11-04', 75, 10, 362, 10),
+    ('2020-12-05', 'Piazza Torino 29', 'Agente Pellegrini', '2020-12-05', 85, 5, 342, 11)
+
+
+
+
+
+SELECT COUNT(*) FROM VERBALE
+
+-- Inizialmente avevo semlicemente contato i verbali per anagrafica, ma siccome risultava poco leggibile per una persona, ho pensato di optare per un JOIN
+SELECT ANAGRAFICA.Nome, ANAGRAFICA.Cognome, COUNT(*) AS VerbaliPerAnagrafica FROM ANAGRAFICA 
+INNER JOIN VERBALE ON ANAGRAFICA.IDAnagrafica = VERBALE.IDAnagrafica
+GROUP BY ANAGRAFICA.Nome, ANAGRAFICA.Cognome
+
+-- Per la stessa ragione di cui sopra, ho optato per il JOIN
+SELECT TIPO_VIOLAZIONE.Descrizione, COUNT(*) AS VerbaliPerTipoViolazione
+FROM VERBALE
+INNER JOIN TIPO_VIOLAZIONE ON VERBALE.IDViolazione = TIPO_VIOLAZIONE.IDViolazione
+GROUP BY TIPO_VIOLAZIONE.Descrizione;
+
+SELECT ANAGRAFICA.Nome, ANAGRAFICA.Cognome, SUM(VERBALE.DecurtamentoPunti) AS TotalePuntiDecPerAnagrafica
+FROM ANAGRAFICA
+LEFT JOIN VERBALE ON ANAGRAFICA.IDAnagrafica = VERBALE.IDAnagrafica
+GROUP BY ANAGRAFICA.IDAnagrafica, ANAGRAFICA.Nome, ANAGRAFICA.Cognome;
+
+SELECT
+    ANAGRAFICA.Cognome,
+    ANAGRAFICA.Nome,
+    VERBALE.DataViolazione,
+    VERBALE.IndirizzoViolazione,
+    VERBALE.Importo,
+    VERBALE.DecurtamentoPunti
+FROM
+    ANAGRAFICA
+INNER JOIN
+    VERBALE
+ON
+    ANAGRAFICA.IDAnagrafica = VERBALE.IDAnagrafica
+WHERE
+    ANAGRAFICA.Citta = 'Palermo';
+
+SELECT
+	ANAGRAFICA.Cognome,
+	ANAGRAFICA.Nome,
+	ANAGRAFICA.Indirizzo,
+	VERBALE.DataViolazione,
+	VERBALE.Importo,
+	VERBALE.DecurtamentoPunti
+FROM VERBALE
+INNER JOIN
+	ANAGRAFICA
+ON VERBALE.IDAnagrafica = ANAGRAFICA.IDAnagrafica
+WHERE
+	VERBALE.DataViolazione BETWEEN '2009-02-01' AND  '2009-07-31'
+
+SELECT
+    ANAGRAFICA.Nome,
+    ANAGRAFICA.Cognome,
+    SUM(VERBALE.Importo) AS TotaleImportiPerAnagrafica
+FROM
+    VERBALE
+INNER JOIN
+    ANAGRAFICA
+ON
+    ANAGRAFICA.IDAnagrafica = VERBALE.IDAnagrafica
+GROUP BY
+    ANAGRAFICA.Nome,
+    ANAGRAFICA.Cognome;
+
+SELECT * FROM ANAGRAFICA
+WHERE Citta = 'Palermo'
+
+SELECT
+        VERBALE.Nominativo_Agente,
+        COUNT(*) AS ViolazioniPerAgente
+    FROM
+        VERBALE
+    GROUP BY
+        VERBALE.Nominativo_Agente
+
+SELECT ANAGRAFICA.Nome, ANAGRAFICA.Cognome, VERBALE.DataViolazione, VERBALE.Importo, VERBALE.DecurtamentoPunti
+FROM VERBALE
+INNER JOIN ANAGRAFICA
+ON ANAGRAFICA.IDAnagrafica = VERBALE.IDAnagrafica
+WHERE VERBALE.DecurtamentoPunti > 5
+
+SELECT
+    ANAGRAFICA.Cognome,
+    ANAGRAFICA.Nome,
+    VERBALE.IndirizzoViolazione,
+    VERBALE.DataViolazione,
+    VERBALE.Importo,
+    VERBALE.DecurtamentoPunti
+FROM
+    VERBALE
+INNER JOIN
+    ANAGRAFICA
+ON
+    VERBALE.IDAnagrafica = ANAGRAFICA.IDAnagrafica
+WHERE
+    VERBALE.Importo > 400;
+
