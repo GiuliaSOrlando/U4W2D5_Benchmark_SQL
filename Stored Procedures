@@ -1,0 +1,63 @@
+Testi relativi alle Stored Procedures:
+
+CREATE PROCEDURE ContravvenzioniPerAnno 
+@AnnoContravvenzione INT
+AS
+BEGIN
+	SELECT 
+		VERBALE.DataViolazione,
+		VERBALE.Importo,
+		VERBALE.DecurtamentoPunti
+	FROM 
+		VERBALE
+	WHERE
+		YEAR(VERBALE.DataViolazione) = @AnnoContravvenzione
+END
+GO
+
+
+
+
+
+CREATE PROCEDURE InfoViolazionePerData
+@DataSpecifica DATE
+
+AS
+BEGIN
+	SELECT VERBALE.DataViolazione, VERBALE.Importo, VERBALE.DecurtamentoPunti 
+	FROM VERBALE
+	WHERE DataViolazione = @DataSpecifica;
+END
+GO
+
+
+
+
+
+
+CREATE PROCEDURE TotalePuntiPerDataSpecifica
+	@DataSpecifica DATE
+AS
+BEGIN
+	SELECT SUM(VERBALE.DecurtamentoPunti) AS TotalePuntiPerDataSpecifica
+	FROM VERBALE
+	WHERE VERBALE.DataViolazione = @DataSpecifica
+END
+GO
+
+
+
+
+
+
+
+CREATE PROCEDURE EliminaVerbalePerID
+@IdVerbaleSpecifico INT
+
+AS
+BEGIN
+	DELETE FROM VERBALE
+	WHERE VERBALE.IDVerbale = @IdVerbaleSpecifico
+END
+GO
+
